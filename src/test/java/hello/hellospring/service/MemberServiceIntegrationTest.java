@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,8 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
-@Transactional // transactional 사용시 test 수행 후 rollback을 해준다. 이는 db에 데이터가 남지 않아 다음 테스트에 영향을 주지 않는다.
-
+@Transactional // transactional 사용시 test 수행 후 rollback을 해준다. 이는 db에 데이터가 남지 않아 다음 테스트에 영향을 주지 않는다
 class MemberServiceIntegrationTest {
 
     @Autowired  MemberService memberService;
