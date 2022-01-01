@@ -3,17 +3,19 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepostiroy;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Transactional // jpa 는 모든 변경이 transaction 안에서 되야함
 public class MemberService {
 
     private final MemberRepostiroy memberRepostiroy;
 
     // DI
     public MemberService(MemberRepostiroy memberRepostiroy) {
+
         this.memberRepostiroy = memberRepostiroy;
     }
 
