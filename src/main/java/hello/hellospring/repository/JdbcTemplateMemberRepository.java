@@ -8,15 +8,15 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
-import javax.xml.crypto.Data;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 public class JdbcTemplateMemberRepository implements MemberRepostiroy{
+    // jdbc 사용시 중복되는 코드를 줄일 수 있다.
+    // 하지만 sql문을 직접 입력해줘야한다.
+    // datasource는 db 커넥션 정보를 가지고 있고 bean으로 등록하여 인자로 넘겨준다.
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -55,6 +55,10 @@ public class JdbcTemplateMemberRepository implements MemberRepostiroy{
     public List<Member> findAll() {
         return jdbcTemplate.query("select * from member", memberRowMapper());
     }
+
+
+    // RoewMapper 사용시 원하는 형태의 결가값을 반환할 수 있다.
+    // rs 값을 Member 객체에 저장한다.
     private RowMapper<Member> memberRowMapper(){
         return (rs, rowNum) -> {
             Member member = new Member();
